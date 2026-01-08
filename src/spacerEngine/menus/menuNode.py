@@ -1,7 +1,6 @@
 class MenuNode:
 	def __init__(self):
 		self.navigation = []
-
 		self.interaction = []
 	
 	def Navigation_Insert(self, trigger, menu: "MenuNode"):
@@ -12,6 +11,6 @@ class MenuNode:
 	
 	def Navigation_DeleteAllWhereMenu(self, menu: "MenuNode") -> None:
 		self.navigation = [i for i in self.navigation if i["menu"] != menu]
-	
+
 	def run(self) -> "MenuNode":
 		raise NotImplementedError

@@ -1,15 +1,15 @@
-from enum import Enum, auto
-
-class colors(Enum):
-	RED = auto()
-	YELLOW = auto()
-	GREEN = auto()
-	BLUE = auto()
+def setup(gint: "gameInstance"):
+	gint.a = 1
 
 
-def main():
-	print(colors.BLUE > colors.RED)
+class gameInstance:
+	def __init__(self):
+		self.a = None
+	
+	def main(self):
+		setup(self)
 
+		print(self.a)
 
-if __name__ == "__main__":
-	main()
+g = gameInstance()
+g.main()
