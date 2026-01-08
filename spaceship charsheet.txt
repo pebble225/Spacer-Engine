@@ -1,0 +1,54 @@
+space ship
+	propellant
+		propellant unit
+		fuel tank
+	shields
+		capacitor
+		emitter
+	energy
+		power generator
+		power cooling
+	heat dissipation
+		heat dissipation unit
+		heat propellant tank
+	armor
+		armor plating
+	warping
+		warping unit
+	command
+		ship computer
+	targeting
+		targeting server
+
+
+fundemental ship chassis stats
+	shield total hit points : number
+	shield downtime : time in ticks
+	shield regeneration : number per ticks
+	shield power efficiency : number of joules per unit of shield hit points
+
+	armor hit points : number
+	hull hit points : number
+
+	heat system accumulation : number in joules
+	heat low dissipation rate : number of joules per tick
+	heat high dissipation rate : number of joules per tick
+
+	acceleration power : number
+	mass : number derived from modules
+	acceleration to mass ratio : percentage derived value | sigmoid(accelerationPower / mass)
+	acceleration to mass sigmoid scale value : hard coded
+	acceleration to mass ratio effect on evasion: hard coded
+
+	dodge chance : percentage derived value | 
+
+	command control speed : tick value
+	target processing power : number
+
+	maximum power generation : number
+	power load : number derived from equipment load
+	power is overflowing : derived flag | powerLoad > maxPowerGeneration
+
+	run away chance : percentage
+
+	available distriputed power : derived percentage | powerProduction / powerLoad
