@@ -1,54 +1,52 @@
-from spacerEngine.menus import MenuNode
-from spacerEngine.menus import DescribableMenu
+from spacerEngine.menus.menuNode import MenuNode
+from spacerEngine.menus.describableMenu import DescribableMenu
 
 from spacerEngine.ConsoleClear import clear
 
 class SimpleMenu(DescribableMenu):
-	def __init__(self):
-		super().__init__()
-		self.onLocationDescription = None
-	
-	def AddOnLocationDescription(self, onLocationDescription):
-		self.onLocationDescription = onLocationDescription
-	
-	def GetOnLocationDescription(self) -> str:
-		return self.onLocationDescription
+    def __init__(self):
+        super().__init__()
+        self.onLocationDescription = None
 
-	def VaidateOnLocationDescription(self):
-		if self.onLocationDescription is None:
-			raise ValueError("Location description needs to be initialized. Object {self}")
-	
-	def AddTravelLocation(self, menu: MenuNode):
-		self.Navigation_Insert("travel", menu)
+    def AddOnLocationDescription(self, onLocationDescription):
+        self.onLocationDescription = onLocationDescription
 
-	def run(self) -> MenuNode:
-		
+    def GetOnLocationDescription(self) -> str:
+        return self.onLocationDescription
 
-		running = True
+    def ValidateOnLocationDescription(self):
+        if self.onLocationDescription is None:
+            raise ValueError("Location description needs to be initialized. Object {self}")
 
-		nextMenu = self
+    def AddTravelLocation(self, menu: MenuNode):
+        self.Navigation_Insert("travel", menu)
 
-		while running:
-			clear()
-			print(self.onLocationDescription)
-			print("Enter a location number from below.\n")
-			entryList = self.Navigation_SelectAllWhereType("travel")
+    def run(self) -> MenuNode:
+        running = True
+        nextMenu = self
 
-			i = 1
-			for entry in entryList:
-				if not isinstance(entry["menu"], DescribableMenu):
-					raise TypeError("Simple Menu is only designed to work with other describable menus.")
-				print(f"({i}) {entry["menu"].description}")
-				i += 1
-			
-			com = input("> ")
-			try:
-				com = int(com)
+        while running:
+            clear()
+            print(self.onLocationDescription)
+            print("Enter a location number from below.\n")
+            entryList = self.Navigation_SelectAllWhereType("travel")
 
-				if com > 0 and com < len(entryList)+1:
-					nextMenu = entryList[com - 1]["menu"]
-			except ValueError:
-				pass
+            i = 1
+            for entry in entryList:
+                if not isinstance(entry["menu"], DescribableMenu):
+                    raise TypeError("Simple Menu is only designed to work with other describable menus.")
+                print(f"({i}) {entry["menu"].GetTravelDescription()}")
 
-		
-		return nextMenu
+                i += 1
+
+            com = input("> ")
+            try:
+                com = int(com)
+
+                if 1 <= com <= len(entryList):
+                    nextMenu = entryList[com - 1]["menu"]
+                    running = False
+            except ValueError:
+                pass
+
+        return nextMenu

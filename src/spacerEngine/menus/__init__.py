@@ -1,3 +1,5 @@
-from .menuNode import MenuNode
-from .describableMenu import DescribableMenu
-from .simpleMenu import SimpleMenu
+from spacerEngine.menus.menuNode import MenuNode
+from spacerEngine.menus.describableMenu import DescribableMenu
+from spacerEngine.menus.simpleMenu import SimpleMenu
+
+__all__ = ["MenuNode", "DescribableMenu", "SimpleMenu"]

@@ -1,8 +1,6 @@
 import math
 
-from spacerEngine.menus.menuNode import MenuNode
-from spacerEngine.menus.describableMenu import DescribableMenu
-from spacerEngine.menus.simpleMenu import SimpleMenu
+from spacerEngine.menus import *
 
 from spacerEngine.gameContent import GameContent
 
@@ -10,10 +8,13 @@ class GameInstance:
 	def __init__(self):
 		self.running = True
 
-		self.startMenu = None
+		self.currentMenu = None
 
 	def main(self):
-		GameContent.Setup(self)
+		self.currentMenu = GameContent.Setup()
+
+		while self.running:
+			self.currentMenu = self.currentMenu.run()
 
 
 def customSigmoid(x: float, modifier: float):

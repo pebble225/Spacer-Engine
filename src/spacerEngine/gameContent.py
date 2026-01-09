@@ -1,11 +1,11 @@
+
 from spacerEngine.menus.menuNode import MenuNode
 from spacerEngine.menus.describableMenu import DescribableMenu
 from spacerEngine.menus.simpleMenu import SimpleMenu
 
-from spacerEngine.gameInstance import GameInstance
 
 class GameContent:
-	def Setup(game: "GameInstance"):
+	def Setup() -> "MenuNode":
 
 		# predefine other
 
@@ -15,10 +15,6 @@ class GameContent:
 
 		FLIGHTZONE_PEBBLESTATION = SimpleMenu()
 		FLIGHTZONE_SOYUZSTATION = SimpleMenu()
-
-		# set entry point
-
-		game.startMenu = FLIGHTZONE_PEBBLESTATION
 
 		# warping mode
 
@@ -38,3 +34,5 @@ class GameContent:
 		FLIGHTZONE_SOYUZSTATION.AddTravelDescription("Orbit of soyuz station.")
 		FLIGHTZONE_SOYUZSTATION.AddOnLocationDescription("You are in orbit of soyuz station.")
 		FLIGHTZONE_SOYUZSTATION.AddTravelLocation(WARPINGMODE)
+
+		return FLIGHTZONE_PEBBLESTATION
